@@ -21,7 +21,7 @@ module NthWeekWithRules
       if start_date.month != end_date.month
         week = 0
       end
-    when :many
+    when
       middle_date = start_date + 3
       if start_date.month != end_date.month && middle_date.month == end_date.month
         week = 0
