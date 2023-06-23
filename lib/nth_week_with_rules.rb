@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+
 require "nth_week_with_rules/version"
 
+# Additional features module to be included in `Date` class
 module NthWeekWithRules
+  class InvalidMonthSelectError < StandardError; end
+
   # @param [Integer] first_wday 0, 1, 2, 3, 4, 5 or 6 (default is 0)
   # @param [Symbol] month_select :normal, :before, :after, :many (default is :normal)
   # @param [Integer] base 0 or 1 (default is 1)
@@ -12,22 +17,16 @@ module NthWeekWithRules
     week = (start_date.day + 5) / 7
     case month_select
     when :normal
-      if start_date.month != end_date.month && self.month == end_date.month
-        week = 0
-      end
+      week = 0 if start_date.month != end_date.month && month == end_date.month
     when :before
       # Do nothing
     when :after
-      if start_date.month != end_date.month
-        week = 0
-      end
+      week = 0 if start_date.month != end_date.month
     when :many
       middle_date = start_date + 3
-      if start_date.month != end_date.month && middle_date.month == end_date.month
-        week = 0
-      end
+      week = 0 if start_date.month != end_date.month && middle_date.month == end_date.month
     else
-      # Error
+      raise InvalidMonthSelectError
     end
     base + week
   end
@@ -35,7 +34,7 @@ module NthWeekWithRules
   # @param [Fixnum] first_wday 0, 1, 2, 3, 4, 5 or 6 (default is 0)
   # @return [Date] first date of the week of this instance's date
   def first_date_of_week(first_wday: 0)
-    self - ((self.wday - first_wday) % 7)
+    self - ((wday - first_wday) % 7)
   end
 end
 
