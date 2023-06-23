@@ -1,10 +1,10 @@
 require "nth_week_with_rules/version"
 
 module NthWeekWithRules
-  # @param [Fixnum] first_wday 0, 1, 2, 3, 4, 5 or 6 (default is 0)
+  # @param [Integer] first_wday 0, 1, 2, 3, 4, 5 or 6 (default is 0)
   # @param [Symbol] month_select :normal, :before, :after, :many (default is :normal)
-  # @param [Fixnum] base 0 or 1 (default is 1)
-  # @return [Fixnum] An integer from 1 to 6 (from 0 to 5 if **base** is 0)
+  # @param [Integer] base 0 or 1 (default is 1)
+  # @return [Integer] An integer from 1 to 6 (from 0 to 5 if **base** is 0)
   def nth_week(first_wday: 0, month_select: :normal, base: 1)
     start_date  = first_date_of_week(first_wday: first_wday)
     end_date    = start_date + 7
