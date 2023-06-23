@@ -11,8 +11,8 @@ module NthWeekWithRules
   # @param [Integer] base 0 or 1 (default is 1)
   # @return [Integer] An integer from 1 to 6 (from 0 to 5 if **base** is 0)
   def nth_week(first_wday: 0, month_select: :normal, base: 1)
-    start_date  = first_date_of_week(first_wday: first_wday)
-    end_date    = start_date + 7
+    start_date = first_date_of_week(first_wday: first_wday)
+    end_date = start_date + 7
 
     week = (start_date.day + 5) / 7
     case month_select
