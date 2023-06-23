@@ -70,7 +70,14 @@ class NthWeekWithRulesTest < Test::Unit::TestCase
   end
 
   test "#nth_week with invalid month_select" do
-    assert { Date.today.nth_week(month_select: :invalid) rescue $ERROR_INFO.instance_of? NthWeekWithRules::InvalidMonthSelectError }
+    e = nil
+    begin
+      Date.today.nth_week(month_select: :invalid)
+    rescue => exception
+      e = exception
+    end
+    assert { !e.nil? }
+    assert { e.instance_of? NthWeekWithRules::InvalidMonthSelectError }
   end
 
   data(
