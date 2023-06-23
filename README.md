@@ -115,4 +115,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/kaosf/
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-Copyright (C) 2016 ka
+Copyright (C) 2016-2023 ka
