@@ -3,7 +3,7 @@
 require "test_helper"
 require "nth_week_with_rules"
 
-class TestNthWeekWithRules < Test::Unit::TestCase
+class NthWeekWithRulesTest < Test::Unit::TestCase
   data(
     "2016-04-01" => [Date.new(2016,  4,  1), 1],
     "2016-04-02" => [Date.new(2016,  4,  2), 1],
