@@ -3,8 +3,6 @@
 require "test_helper"
 require "nth_week_with_rules"
 
-# rubocop:disable Layout/ExtraSpacing
-# rubocop:disable Layout/HashAlignment
 class TestNthWeekWithRules < Test::Unit::TestCase
   data(
     "2016-04-01" => [Date.new(2016,  4,  1), 1],
@@ -100,5 +98,3 @@ class TestNthWeekWithRules < Test::Unit::TestCase
     assert { date.first_date_of_week(first_wday: first_wday) == first_date }
   end
 end
-# rubocop:enable Layout/ExtraSpacing
-# rubocop:enable Layout/HashAlignment
