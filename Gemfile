@@ -6,9 +6,9 @@ source "https://rubygems.org"
 gemspec
 
 gem "bundler", "~> 2.4"
-gem "rake", "~> 13.0"
-gem "test-unit", "~> 3.1"
-gem "test-unit-notify", "~> 1.0"
-gem "rubocop", "~> 1.21"
 gem "guard", "~> 2.13"
 gem "guard-shell", "~> 0.7"
+gem "rake", "~> 13.0"
+gem "rubocop", "~> 1.21"
+gem "test-unit", "~> 3.1"
+gem "test-unit-notify", "~> 1.0"
