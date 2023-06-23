@@ -71,6 +71,10 @@ class TestNthWeekWithRules < Test::Unit::TestCase
     assert { date.nth_week(base: 0) == nth }
   end
 
+  test "#nth_week with invalid month_select" do
+    assert { Date.today.nth_week(month_select: :invalid) rescue $ERROR_INFO.instance_of? NthWeekWithRules::InvalidMonthSelectError }
+  end
+
   data(
     "2016-04-01 0" => [Date.new(2016,  4,  1), 0, Date.new(2016,  3, 27)],
     "2016-04-03 0" => [Date.new(2016,  4,  3), 0, Date.new(2016,  4,  3)],
