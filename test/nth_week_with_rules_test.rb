@@ -5,6 +5,7 @@ require "nth_week_with_rules"
 
 class NthWeekWithRulesTest < Test::Unit::TestCase
   data(
+    # rubocop:disable all
     "2016-04-01" => [Date.new(2016,  4,  1), 1],
     "2016-04-02" => [Date.new(2016,  4,  2), 1],
     "2016-04-03" => [Date.new(2016,  4,  3), 2],
@@ -13,7 +14,8 @@ class NthWeekWithRulesTest < Test::Unit::TestCase
     "2016-04-25" => [Date.new(2016,  4, 25), 5],
     "2016-04-30" => [Date.new(2016,  4, 30), 5],
     "2016-05-01" => [Date.new(2016,  5,  1), 1],
-    "2016-05-31" => [Date.new(2016,  5, 31), 5]
+    "2016-05-31" => [Date.new(2016,  5, 31), 5],
+    # rubocop:enable all
   )
   test "#nth_week" do |(date, nth)|
     assert { date.nth_week == nth }
@@ -32,6 +34,7 @@ class NthWeekWithRulesTest < Test::Unit::TestCase
   end
 
   data(
+    # rubocop:disable all
     "2016-04-01 0 :before" => [0, :before, 5],
     "2016-04-01 0 :after"  => [0, :after,  1],
     "2016-04-01 0 :many"   => [0, :many,   5],
@@ -52,35 +55,39 @@ class NthWeekWithRulesTest < Test::Unit::TestCase
     "2016-04-01 5 :many"   => [5, :many,   1],
     "2016-04-01 6 :before" => [6, :before, 5],
     "2016-04-01 6 :after"  => [6, :after,  1],
-    "2016-04-01 6 :many"   => [6, :many,   5]
+    "2016-04-01 6 :many"   => [6, :many,   5],
+    # rubocop:enable all
   )
   test "#nth_week with first_wday and select_month" do |(first_wday, month_select, nth)|
     assert { Date.new(2016, 4, 1).nth_week(first_wday: first_wday, month_select: month_select) == nth }
   end
 
   data(
+    # rubocop:disable all
     "2016-04-02" => [Date.new(2016,  4,  2), 0],
     "2016-04-03" => [Date.new(2016,  4,  3), 1],
     "2016-04-11" => [Date.new(2016,  4, 11), 2],
     "2016-04-18" => [Date.new(2016,  4, 18), 3],
-    "2016-04-25" => [Date.new(2016,  4, 25), 4]
+    "2016-04-25" => [Date.new(2016,  4, 25), 4],
+    # rubocop:enable all
   )
   test "#nth_week with base 0" do |(date, nth)|
     assert { date.nth_week(base: 0) == nth }
   end
 
   test "#nth_week with invalid month_select" do
-    e = nil
+    error = nil
     begin
       Date.today.nth_week(month_select: :invalid)
-    rescue => exception
-      e = exception
+    rescue StandardError => e
+      error = e
     end
-    assert { !e.nil? }
-    assert { e.instance_of? NthWeekWithRules::InvalidMonthSelectError }
+    assert { !error.nil? }
+    assert { error.instance_of? NthWeekWithRules::InvalidMonthSelectError }
   end
 
   data(
+    # rubocop:disable all
     "2016-04-01 0" => [Date.new(2016,  4,  1), 0, Date.new(2016,  3, 27)],
     "2016-04-03 0" => [Date.new(2016,  4,  3), 0, Date.new(2016,  4,  3)],
     "2016-04-04 0" => [Date.new(2016,  4,  4), 0, Date.new(2016,  4,  3)],
@@ -99,7 +106,8 @@ class NthWeekWithRulesTest < Test::Unit::TestCase
     "2016-04-01 3" => [Date.new(2016,  4,  1), 3, Date.new(2016,  3, 30)],
     "2016-04-01 4" => [Date.new(2016,  4,  1), 4, Date.new(2016,  3, 31)],
     "2016-04-01 5" => [Date.new(2016,  4,  1), 5, Date.new(2016,  4,  1)],
-    "2016-04-01 6" => [Date.new(2016,  4,  1), 6, Date.new(2016,  3, 26)]
+    "2016-04-01 6" => [Date.new(2016,  4,  1), 6, Date.new(2016,  3, 26)],
+    # rubocop:enable all
   )
   test "#first_date_of_week" do |(date, first_wday, first_date)|
     assert { date.first_date_of_week(first_wday: first_wday) == first_date }
