@@ -27,7 +27,7 @@ date = Date.new(2016, 4, 1)
 
 date.nth_week #=> 1 (means 1st week of 2016-04)
 
-date.nth_week(month_select: before) #=> 5 (means 5th week of 2016-03)
+date.nth_week(month_select: :before) #=> 5 (means 5th week of 2016-03)
 # :before option makes the method to take a before month
 # if the week is over 2 months.
 
